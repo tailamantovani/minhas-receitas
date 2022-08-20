@@ -6,6 +6,7 @@ O projeto tem como objetivo criar, alterar e excluir uma receita culinária. Par
 # Endereço de Deploy - GitHub Pages
 
 # Protótipo
+https://www.figma.com/file/HJqIrDF53IHZ57eOB8Od8L/Minhas-Receitas?node-id=0%3A1
 
 # Checklist
 
