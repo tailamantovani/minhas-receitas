@@ -1,0 +1,17 @@
+@import "~materialize-css/dist/css/materialize.css";
+@import "~material-icons/iconfont/material-icons.css";
+
+:root {
+  --primaryColor: #F5F5F5;
+}
+
+body,
+html {
+  background-color: #F5F5F5;
+}
+
+.my-invalid-input {
+  border-color: red !important;
+  border-left: medium !important;
+}
+
