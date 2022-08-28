@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements AfterViewInit {
+  @ViewChild('mobile') sideNav?: ElementRef;
+  logoImageUrl = '../assets/logo.png';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    M.Sidenav.init(this.sideNav?.nativeElement);
   }
-
 }
