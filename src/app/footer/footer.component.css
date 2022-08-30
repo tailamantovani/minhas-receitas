@@ -1,7 +1,5 @@
-.page-footer {
+.footer-fixed {
   position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin-bottom: 0px;
+  bottom: 0;
+  width: 100%;
 }
