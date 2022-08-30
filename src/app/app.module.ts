@@ -15,7 +15,7 @@ import { CardReceitaComponent } from './card-receita/card-receita.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
     FooterComponent,
     MainPageComponent,
     ReceitaComponent,
