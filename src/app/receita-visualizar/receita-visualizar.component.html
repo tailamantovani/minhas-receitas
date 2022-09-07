@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>{{ receita.nome }}</h3>
+
+  <div class="row">
+    <div class="col s6">
+      <h6>Categoria: {{ receita.categoria }}</h6>
+    </div>
+    <div class="col s6">
+      <h6 class="right">Dificuldade: {{ receita.dificuldade }}</h6>
+    </div>
+  </div>
+
+  <h4>Ingredientes: </h4>
+  <p>
+    {{ receita.ingredientes }}
+  </p>
+
+  <h4>Modo de preparo: </h4>
+  <p>
+    {{ receita.modoPreparo }}
+  </p>
+</div>
