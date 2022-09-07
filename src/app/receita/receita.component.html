@@ -1,7 +1,22 @@
 <div class="container">
-  <h3>{{ receita.nome }}</h3>
+  <div class="row main-title">
+    <div class="col s6 m9">
+      <h3 class="left-align">Receitas</h3>
+    </div>
+    <div class="col s6 m3">
+      <!-- Botão Adicionar -->
+      <h3 class="right">
+        <a class="waves-effect waves-light btn red darken-3" routerLink="receita-novo"
+          ><i class="material-icons left">add</i>Adicionar</a
+        >
+      </h3>
+    </div>
+  </div>
+  <div class="divider"></div>
 
-  <h5>Categoria: {{ receita.categoria }}</h5>
-  <h5>Dificuldade: {{ receita.dificuldade }}</h5>
-
+  <!-- Lista de Receitas -->
+  <app-card-receita
+    *ngFor="let receita of this.receitas"
+    [receita]="receita"
+  ></app-card-receita>
 </div>

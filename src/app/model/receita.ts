@@ -1,50 +1,39 @@
-export class Receita {
-  id?: number;
-  nome?: string;
-  categoria?: string;
-  dificuldade?: string;
+import { Dificuldade, Categoria } from './tipos';
 
-  constructor(nome: string, categoria: string, dificuldade: string) {
+export class Receita {
+  nome: string;
+  ingredientes: string;
+  modoPreparo: string;
+  dificuldade: Dificuldade;
+  categoria: Categoria;
+
+  constructor(
+    nome: string,
+    ingredientes: string,
+    modoPreparo: string,
+    dificuldade: Dificuldade,
+    categoria: Categoria
+  ) {
     this.nome = nome;
+    this.ingredientes = ingredientes;
+    this.modoPreparo = modoPreparo;
+    this.dificuldade = dificuldade;
     this.categoria = categoria;
   }
-}
 
-export const receitas = [
-  {
-    id: 1,
-    nome: 'Pudim',
-    categoria: 'Doces',
-    dificuldade: 'Médio',
-  },
-  {
-    id: 2,
-    nome: 'Lasanha',
-    categoria: 'Massas',
-    dificuldade: 'Médio',
-  },
-  {
-    id: 3,
-    nome: 'Bolo de chocolate',
-    categoria: 'Doces',
-    dificuldade: 'Fácil',
-  },
-  {
-    id: 4,
-    nome: 'Misto quente',
-    categoria: 'Lanches',
-    dificuldade: 'Fácil',
-  },
-  {
-    id: 5,
-    nome: 'Costelinha com molho barbecue',
-    categoria: 'Carnes',
-    dificuldade: 'Difícil',
-  },
-  {
-    id: 6,
-    nome: 'Macarrão ao molho branco',
-    categoria: 'Massas',
-    dificuldade: 'Médio',
-  },
-];
+  public static clone(receita: Receita) {
+    let r: Receita = new Receita(
+      receita.nome,
+      receita.ingredientes,
+      receita.modoPreparo,
+      receita.dificuldade,
+      receita.categoria
+    );
+    r.nome = receita.nome;
+    r.ingredientes = receita.ingredientes;
+    r.modoPreparo = receita.modoPreparo;
+    r.dificuldade = receita.dificuldade;
+    r.categoria = receita.categoria;
+    return r;
+  }
+}

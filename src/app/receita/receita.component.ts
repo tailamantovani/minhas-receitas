@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { receitas, Receita } from '../model/receita';
+import { Receita } from './../model/receita';
+import { ReceitaService } from './receita.service';
+import { Shared } from './../utils/shared';
 
 @Component({
-  selector: 'app-receita-detalhe',
+  selector: 'app-receita',
   templateUrl: './receita.component.html',
   styleUrls: ['./receita.component.css'],
+  providers: [ReceitaService],
 })
 export class ReceitaComponent implements OnInit {
-  receita!: Receita;
+  receitas?: Receita[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private receitaService: ReceitaService) {}
 
   ngOnInit(): void {
-    let idReceita = this.route.snapshot.params['id'];
-    let receitaList = receitas.filter((r) => {
-      return r.id == idReceita;
-    });
+    Shared.initializeWebStorage();
+    this.receitas = this.receitaService.getReceitas();
+  }
 
-    if (receitaList.length === 0) {
-      alert('Receita não encontrada!');
-    }
-    this.receita = receitaList[0];
+  onEdit(receita: Receita): void {
+    alert('Ainda não está implementado!');
   }
 }
