@@ -1,0 +1,132 @@
+<div class="container">
+  <h5>Cadastro de Receitas</h5>
+  <br />
+
+  <div class="row">
+    <form
+      class="col s12"
+      #form="ngForm"
+      (submit)="onSubmit()"
+      autocomplete="off"
+    >
+      <!-- Nome -->
+      <div class="input-field col s12">
+        <label for="input-nome-receita" class="active">Nome da Receita *</label>
+        <input
+          id="input-nome-receita"
+          name="input-nome-receita"
+          type="text"
+          class="validate"
+          [(ngModel)]="this.receita.nome"
+          pattern="[a-zà-ú|A-ZÀ-Ú\s]+$"
+          #nome="ngModel"
+          required
+        />
+        <div class="red-text" *ngIf="nome.errors?.['required'] && nome.touched">
+          Por favor, o nome da receita é obrigatório.
+        </div>
+      </div>
+
+      <!-- Ingredientes -->
+      <div class="input-field col s12">
+        <label for="input-ingredientes" class="active">Ingredientes *</label>
+        <textarea
+          id="input-ingredientes"
+          name="input-ingredientes"
+          type="text"
+          class="materialize-textarea validate"
+          [(ngModel)]="this.receita.ingredientes"
+          #ingredientes="ngModel"
+          required
+        ></textarea>
+        <div
+          class="red-text"
+          [hidden]="ingredientes.valid || ingredientes.untouched"
+        >
+          Por favor, informe os ingredientes.
+        </div>
+      </div>
+
+      <!-- Modo de preparo -->
+      <div class="input-field col s12">
+        <label for="input-modo-preparo" class="active">Modo de preparo *</label>
+        <textarea
+          id="input-modo-preparo"
+          name="input-modo-preparo"
+          class="materialize-textarea validate"
+          [(ngModel)]="this.receita.modoPreparo"
+          #modopreparo="ngModel"
+          required
+        ></textarea>
+        <div
+          class="red-text"
+          [hidden]="modopreparo.valid || modopreparo.untouched"
+        >
+          Por favor, informe o modo de preparo.
+        </div>
+      </div>
+
+      <!-- Categoria -->
+      <div class="input-field col s12">
+        <label for="select-categoria" class="active">Categoria *</label>
+
+        <select
+          id="select-categoria"
+          class="browser-default select validate"
+          [(ngModel)]="this.receita.categoria"
+          (change)="this.onCategoriaChange($event)"
+          #categoria="ngModel"
+          required
+        >
+          <option value="" disabled>Escolha uma categoria</option>
+          <option value="Bebidas">Bebidas</option>
+          <option value="Carnes">Carnes</option>
+          <option value="Lanches">Lanches</option>
+          <option value="Massas">Massas</option>
+          <option value="Sobremesas">Sobremesas</option>
+        </select>
+        <div class="red-text" [hidden]="categoria.valid || categoria.untouched">
+          Por favor, informe a categoria.
+        </div>
+      </div>
+
+      <!-- Dificuldade -->
+      <div class="input-field col s12">
+        <label for="select-dificuldade" class="active">Dificuldade *</label>
+
+        <select
+          id="select-dificuldade"
+          class="browser-default select"
+          [(ngModel)]="this.receita.dificuldade"
+          (change)="this.onDificuldadeChange($event)"
+          #dificuldade="ngModel"
+          required
+        >
+          <option value="" disabled>Escolha uma dificuldade</option>
+          <option value="Facil">Facil</option>
+          <option value="Medio">Medio</option>
+          <option value="Dificil">Dificil</option>
+        </select>
+      </div>
+
+      <div class="col s6">
+        <button
+          class="btn waves-effect waves-light red darken-3"
+          type="submit"
+          [disabled]="!form.valid"
+        >
+          Salvar
+        </button>
+      </div>
+
+      <div class="col s6">
+        <button
+          class="btn waves-effect waves-light grey darken-2"
+          (click)="onCancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
