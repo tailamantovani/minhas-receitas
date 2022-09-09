@@ -3,6 +3,18 @@
   <br />
 
   <div class="row">
+
+    <div class="col s12">
+      <div
+        id="msg-error"
+        class="card-panel red white-text"
+        [hidden]="!this.message"
+        [class.red]="!this.isSuccess"
+        [class.blue]="this.isSuccess"
+      > {{ this.message }}</div>
+    </div>
+
+
     <form
       class="col s12"
       #form="ngForm"
@@ -73,21 +85,16 @@
         <select
           id="select-categoria"
           class="browser-default select validate"
-          [(ngModel)]="this.receita.categoria"
           (change)="this.onCategoriaChange($event)"
-          #categoria="ngModel"
           required
         >
-          <option value="" disabled>Escolha uma categoria</option>
+          <option value="" selected disabled>Escolha uma categoria</option>
           <option value="Bebidas">Bebidas</option>
           <option value="Carnes">Carnes</option>
           <option value="Lanches">Lanches</option>
           <option value="Massas">Massas</option>
           <option value="Sobremesas">Sobremesas</option>
         </select>
-        <div class="red-text" [hidden]="categoria.valid || categoria.untouched">
-          Por favor, informe a categoria.
-        </div>
       </div>
 
       <!-- Dificuldade -->
@@ -97,12 +104,10 @@
         <select
           id="select-dificuldade"
           class="browser-default select"
-          [(ngModel)]="this.receita.dificuldade"
           (change)="this.onDificuldadeChange($event)"
-          #dificuldade="ngModel"
           required
         >
-          <option value="" disabled>Escolha uma dificuldade</option>
+          <option value="" selected disabled>Escolha uma dificuldade</option>
           <option value="Facil">Facil</option>
           <option value="Medio">Medio</option>
           <option value="Dificil">Dificil</option>

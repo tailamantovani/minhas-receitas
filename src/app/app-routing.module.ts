@@ -7,7 +7,7 @@ import { ReceitaNovoComponent } from './receita-novo/receita-novo.component';
 
 const routes: Routes = [
   { path: '', component: ReceitaComponent },
-  { path: 'receita/:nome', component: ReceitaVisualizarComponent },
+  { path: 'receita/:id', component: ReceitaVisualizarComponent },
   { path: 'receita-novo', component: ReceitaNovoComponent },
   { path: 'sobre', component: SobreComponent },
 ];
