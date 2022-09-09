@@ -1,18 +1,19 @@
 import { Dificuldade, Categoria } from './tipos';
 
 export class Receita {
-  nome: string;
-  ingredientes: string;
-  modoPreparo: string;
-  dificuldade: Dificuldade;
-  categoria: Categoria;
+  id?: number;
+  nome?: string;
+  ingredientes?: string;
+  modoPreparo?: string;
+  dificuldade?: Dificuldade;
+  categoria?: Categoria;
 
   constructor(
-    nome: string,
-    ingredientes: string,
-    modoPreparo: string,
-    dificuldade: Dificuldade,
-    categoria: Categoria
+    nome?: string,
+    ingredientes?: string,
+    modoPreparo?: string,
+    dificuldade?: Dificuldade,
+    categoria?: Categoria
   ) {
     this.nome = nome;
     this.ingredientes = ingredientes;

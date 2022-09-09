@@ -11,6 +11,7 @@ import { ReceitaNovoComponent } from './receita-novo/receita-novo.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { CardReceitaComponent } from './receita/card-receita/card-receita.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     SobreComponent,
     CardReceitaComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

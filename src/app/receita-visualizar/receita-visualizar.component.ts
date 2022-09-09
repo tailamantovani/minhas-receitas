@@ -7,7 +7,6 @@ import { ReceitaService } from 'src/app/receita/receita.service';
   selector: 'app-receita-detalhe',
   templateUrl: './receita-visualizar.component.html',
   styleUrls: ['./receita-visualizar.component.css'],
-  providers: [ReceitaService],
 })
 export class ReceitaVisualizarComponent implements OnInit {
   receita!: Receita;
@@ -15,19 +14,25 @@ export class ReceitaVisualizarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private receitaService: ReceitaService
-  ) {}
+  ) {
+    this.receita = new Receita();
+  }
 
   ngOnInit(): void {
-    let nomeReceita = this.route.snapshot.params['nome'];
+    let idReceita = this.route.snapshot.params['id'];
 
-    let receitas = this.receitaService.getReceitas();
-    let receitaSelect = receitas.filter((r) => {
-      return r.nome == nomeReceita;
+    this.receitaService.getById(idReceita).subscribe({
+      next: (data) => {
+        this.receita = data;
+      },
+      error: (error) => {
+        alert(
+          'Ocorreu um erro ao buscar dados da receita Id. ' +
+            idReceita +
+            ': ' +
+            error
+        );
+      },
     });
-
-    if (receitaSelect.length === 0) {
-      alert('Receita não encontrada!');
-    }
-    this.receita = receitaSelect[0];
   }
 }

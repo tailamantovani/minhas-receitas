@@ -9,59 +9,66 @@ import { Receita } from 'src/app/model/receita';
   selector: 'app-receita-novo',
   templateUrl: './receita-novo.component.html',
   styleUrls: ['./receita-novo.component.css'],
-  providers: [ReceitaService],
 })
 export class ReceitaNovoComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
-  receita!: Receita;
   isSubmitted!: boolean;
+  isSuccess = false;
+  message = '';
+
+  receita!: Receita;
 
   constructor(
     private receitaService: ReceitaService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.receita = new Receita(
-      '',
-      '',
-      '',
-      Dificuldade.Facil,
-      Categoria.Bebidas
-    );
+    this.receita = new Receita();
+  }
 
+  onReset() {
+    console.log('reset');
+    this.receita = new Receita();
   }
 
   onCategoriaChange(event: Event) {
-    this.receita.categoria = (event.target as HTMLInputElement).value as Categoria;
+    this.receita.categoria = (event.target as HTMLInputElement)
+      .value as Categoria;
   }
 
   onDificuldadeChange(event: Event) {
-    this.receita.dificuldade = (event.target as HTMLInputElement).value as Dificuldade;
+    this.receita.dificuldade = (event.target as HTMLInputElement)
+      .value as Dificuldade;
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-
-    if (!this.receitaService.isExist(this.receita.nome)) {
-      this.receitaService.save(this.receita);
+    if (!this.receita.categoria) {
+      this.isSubmitted = false;
+      this.message = 'O campo Categoria não pode ser vazio.'
+    } else if (!this.receita.dificuldade) {
+      this.isSubmitted = false;
+      this.message = 'O campo Dificuldade não pode ser vazio.'
     } else {
-      this.receitaService.update(this.receita);
+      this.isSuccess = true;
+      this.isSubmitted = true;
+
+      if (!this.receita.id) {
+        this.receitaService
+          .save(this.receita)
+          .then((value) => {
+            this.form.reset();
+            this.receita = new Receita();
+
+            alert('Cadastro realizado com sucesso!');
+            this.router.navigate(['']);
+          })
+          .catch((error) => {
+            alert('Ocorreu um erro ao salvar a receita: ' + error);
+          });
+      }
     }
-
-    this.form.reset();
-    this.receita = new Receita(
-      '',
-      '',
-      '',
-      Dificuldade.Facil,
-      Categoria.Bebidas
-    );
-
-    alert('Cadastro realizado com sucesso!');
-    this.router.navigate(['']);
   }
 
   onCancel() {
