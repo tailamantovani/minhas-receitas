@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Receita } from './../model/receita';
 import { ReceitaService } from './receita.service';
-import { Shared } from './../utils/shared';
 
 @Component({
   selector: 'app-receita',
   templateUrl: './receita.component.html',
   styleUrls: ['./receita.component.css'],
-  providers: [ReceitaService],
 })
 export class ReceitaComponent implements OnInit {
-  receitas?: Receita[];
+  receitas: Receita[];
 
-  constructor(private receitaService: ReceitaService) {}
+  constructor(private receitaService: ReceitaService) {
+    this.receitas = [];
+  }
 
   ngOnInit(): void {
-    Shared.initializeWebStorage();
-    this.receitas = this.receitaService.getReceitas();
+    this.receitaService.getReceitas().subscribe({
+      next: (data) => {
+        this.receitas = data;
+      },
+      error: (error) => {
+        alert(error);
+      },
+    });
   }
 
-  onEdit(receita: Receita): void {
-    alert('Ainda não está implementado!');
-  }
 }
