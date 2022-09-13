@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Receita } from './../model/receita';
+import { Receita } from 'src/app/model/receita';
 import { ReceitaService } from './receita.service';
 
 @Component({
@@ -15,6 +15,14 @@ export class ReceitaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.buscarReceitas();
+  }
+
+  atualizarDados() {
+    this.buscarReceitas();
+  }
+
+  buscarReceitas() {
     this.receitaService.getReceitas().subscribe({
       next: (data) => {
         this.receitas = data;
@@ -24,5 +32,4 @@ export class ReceitaComponent implements OnInit {
       },
     });
   }
-
 }
