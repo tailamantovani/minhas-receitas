@@ -1,7 +1,7 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Receita } from '../model/receita';
+import { Receita } from 'src/app/model/receita';
 
 @Injectable({
   providedIn: 'root',
@@ -28,20 +28,10 @@ export class ReceitaService {
       .toPromise();
   }
 
-  patch(receita: Receita): Observable<Receita> {
-    return this.httpClient.patch<Receita>(
-      `${this.URL}/${receita.id}`,
-      receita,
-      this.httpOptions
-    );
-  }
-
-  update(receita: Receita): Observable<Receita> {
-    return this.httpClient.put<Receita>(
-      `${this.URL}/${receita.id}`,
-      receita,
-      this.httpOptions
-    );
+  update(receita: Receita): Promise<Receita | void> {
+    return this.httpClient
+      .put<Receita>(`${this.URL}/${receita.id}`, JSON.stringify(receita), this.httpOptions)
+      .toPromise();
   }
 
   delete(id: number): Observable<Receita> {

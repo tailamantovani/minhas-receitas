@@ -1,24 +1,14 @@
 <div class="container">
-  <h5>Cadastro de Receitas</h5>
-  <br />
-
   <div class="row">
-
-    <div class="col s12">
-      <div
-        id="msg-error"
-        class="card-panel red white-text"
-        [hidden]="!this.message"
-        [class.red]="!this.isSuccess"
-        [class.blue]="this.isSuccess"
-      > {{ this.message }}</div>
+    <div class="col s12" style="margin-top: 2em">
+      <h5>Cadastro de Receitas</h5>
+      <br />
     </div>
-
 
     <form
       class="col s12"
       #form="ngForm"
-      (submit)="onSubmit()"
+      (ngSubmit)="onSubmit()"
       autocomplete="off"
     >
       <!-- Nome -->
@@ -34,8 +24,11 @@
           #nome="ngModel"
           required
         />
-        <div class="red-text" *ngIf="nome.errors?.['required'] && nome.touched">
-          Por favor, o nome da receita é obrigatório.
+        <div
+          class="red-text msg-error-input"
+          *ngIf="nome.errors?.['required'] && nome.touched"
+        >
+          Por favor, informe o nome da receita.
         </div>
       </div>
 
@@ -52,8 +45,8 @@
           required
         ></textarea>
         <div
-          class="red-text"
-          [hidden]="ingredientes.valid || ingredientes.untouched"
+          class="red-text msg-error-input"
+          *ngIf="ingredientes.errors?.['required'] && ingredientes.touched"
         >
           Por favor, informe os ingredientes.
         </div>
@@ -71,8 +64,8 @@
           required
         ></textarea>
         <div
-          class="red-text"
-          [hidden]="modopreparo.valid || modopreparo.untouched"
+          class="red-text msg-error-input"
+          *ngIf="modopreparo.errors?.['required'] && modopreparo.touched"
         >
           Por favor, informe o modo de preparo.
         </div>
@@ -81,37 +74,56 @@
       <!-- Categoria -->
       <div class="input-field col s12">
         <label for="select-categoria" class="active">Categoria *</label>
-
         <select
           id="select-categoria"
+          name="select-categoria"
           class="browser-default select validate"
-          (change)="this.onCategoriaChange($event)"
+          [compareWith]="compareCategoria"
+          [(ngModel)]="this.receita.categoria"
+          #categoria="ngModel"
+          #categoriaSelect
           required
         >
-          <option value="" selected disabled>Escolha uma categoria</option>
-          <option value="Bebidas">Bebidas</option>
-          <option value="Carnes">Carnes</option>
-          <option value="Lanches">Lanches</option>
-          <option value="Massas">Massas</option>
-          <option value="Sobremesas">Sobremesas</option>
+          <option [ngValue]="{}" disabled>Selecione uma categoria</option>
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+            {{ categoria }}
+          </option>
         </select>
+        <div
+          class="red-text msg-error-input"
+          *ngIf="categoria.errors?.['required'] && categoria.touched"
+        >
+          Por favor, informe a categoria.
+        </div>
       </div>
 
       <!-- Dificuldade -->
       <div class="input-field col s12">
         <label for="select-dificuldade" class="active">Dificuldade *</label>
-
         <select
           id="select-dificuldade"
-          class="browser-default select"
-          (change)="this.onDificuldadeChange($event)"
+          name="select-dificuldade"
+          class="browser-default select validate"
+          [compareWith]="compareDificuldade"
+          [(ngModel)]="this.receita.dificuldade"
+          #dificuldade="ngModel"
+          #dificuldadeSelect
           required
         >
-          <option value="" selected disabled>Escolha uma dificuldade</option>
-          <option value="Facil">Facil</option>
-          <option value="Medio">Medio</option>
-          <option value="Dificil">Dificil</option>
+          <option [ngValue]="{}" disabled>Selecione uma dificuldade</option>
+          <option
+            *ngFor="let dificuldade of dificuldades"
+            [ngValue]="dificuldade"
+          >
+            {{ dificuldade }}
+          </option>
         </select>
+        <div
+          class="red-text msg-error-input"
+          *ngIf="dificuldade.errors?.['required'] && dificuldade.touched"
+        >
+          Por favor, informe a dificuldade.
+        </div>
       </div>
 
       <div class="col s6">
