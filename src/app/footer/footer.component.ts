@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-  logoImageUrl: string = 'src/assets/logo.png';
+  logoImageUrl: string = 'assets/logo.png';
   year: number;
 
   constructor() {
