@@ -8,7 +8,7 @@ import * as M from 'materialize-css';
 })
 export class HeaderComponent implements AfterViewInit {
   @ViewChild('mobile') sideNav?: ElementRef;
-  logoImageUrl: string = '../assets/logo.png';
+  logoImageUrl: string = 'src/assets/logo.png';
 
   constructor() {}
 
