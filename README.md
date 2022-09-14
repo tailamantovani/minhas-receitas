@@ -4,6 +4,7 @@ Projeto da disciplina Frameworks Web do Curso de Especialização em Tecnologia 
 O projeto tem como objetivo criar, alterar e excluir uma receita culinária. Para cada receita será possível criar categorias e adicionar ingredientes, juntamente com o modo de preparo.
 
 # Endereço de Deploy - GitHub Pages
+https://tailamantovani.github.io/minhas-receitas/
 
 # Protótipo
 https://www.figma.com/file/HJqIrDF53IHZ57eOB8Od8L/Minhas-Receitas?node-id=0%3A1
