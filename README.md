@@ -1,7 +1,7 @@
 # minhas-receitas
 Projeto da disciplina Frameworks Web do Curso de Especialização em Tecnologia Java
 
-O projeto tem como objetivo criar, alterar e excluir uma receita culinária. Para cada receita será possível criar categorias e adicionar ingredientes, juntamente com o modo de preparo.
+O projeto tem como objetivo criar, alterar e excluir uma receita culinária. Para cada receita será possível adicionar categorias e ingredientes, juntamente com o modo de preparo.
 
 # Endereço de Deploy - GitHub Pages
 https://tailamantovani.github.io/minhas-receitas/
